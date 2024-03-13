@@ -34,6 +34,7 @@ Route::get('/chinh-sach-va-thu-tuc-fpt-telecom', [PageController::class, 'thutuc
 
 
 
+
 // ADMIN
 Route::get('/dashboarsh', function ()  {
     return view('template.admin'); 
@@ -47,3 +48,8 @@ Route::get('/dashboarsh', function ()  {
  Route::post('/sua-khu-vuc/{id}', [khuvucfptController::class, 'update'])->name('regions.update');
 
  Route::resource('city', thanhphoController::class);
+
+Route::get('/fpt-quan-ba-dinh', [PageController::class, 'hotro'])->name('hotro');
+
+//Router nhan tin voi chu shop
+Route::get('/nhan-tin-voi-chu-shop', [PageController::class, 'nhantinvoishop'])->name('nhantinvoishop');
