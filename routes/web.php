@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\admin\khuvucfptController;
+use App\Http\Controllers\admin\thanhphoController;
 use App\Http\Controllers\PageController;
 use Illuminate\Support\Facades\Route;
 
@@ -13,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
 
 //Route Menu
 Route::get('/', [PageController::class, 'trangchu'])->name('trangchu');
@@ -28,4 +31,19 @@ Route::get('/chi-tiet-cac-danh-sach-kenh-truyen-hinh-fpt', [PageController::clas
 Route::get('/ho-tro-ky-thuat-internet-fpt', [PageController::class, 'spkithuat'])->name('spkithuat');
 Route::get('/chinh-sach-va-thu-tuc-fpt-telecom', [PageController::class, 'thutucchinhsach'])->name('thutucchinhsach');
 //Route Khu vực hà nội
-Route::get('/fpt-quan-ba-dinh', [PageController::class, 'hotro'])->name('hotro');
+
+
+
+// ADMIN
+Route::get('/dashboarsh', function ()  {
+    return view('template.admin'); 
+ });
+
+ Route::get('/khu-vuc', [khuvucfptController::class, 'index'])->name('regions.index');
+ Route::get('/add-khu-vuc', [khuvucfptController::class, 'create'])->name('regions.create');
+ Route::post('/add-khu-vuc', [khuvucfptController::class, 'store'])->name('regions.store');
+ Route::get('/xoa-khu-vuc/{id}', [khuvucfptController::class, 'destroy'])->name('regions.delete');
+ Route::get('/sua-khu-vuc/{id}', [khuvucfptController::class, 'show'])->name('regions.edit');
+ Route::post('/sua-khu-vuc/{id}', [khuvucfptController::class, 'update'])->name('regions.update');
+
+ Route::resource('city', thanhphoController::class);
